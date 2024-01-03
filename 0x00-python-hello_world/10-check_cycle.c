@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "lists.h"
 
 /**
@@ -12,13 +13,13 @@ int check_cycle(listint_t *list)
 	listint_t *first = list;
 	listint_t *second = list;
 
-	if (list = NULL)
+	if (list == NULL)
 		return (0);
 
 	second = second->next;
 	while (second != NULL && second->next != NULL && first != NULL)
 	{
-		if (first == iter2)
+		if (first == second)
 		{
 			return (1);
 		}
