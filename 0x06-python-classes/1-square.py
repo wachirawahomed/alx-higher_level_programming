@@ -5,7 +5,7 @@ This is a class that defines a square and it's init method
 
 """
 
-class Square():
+class Square:
 
     def __init__(self, size):
         """__init__
