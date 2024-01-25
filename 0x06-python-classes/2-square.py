@@ -5,6 +5,7 @@ This is a class that defines a square and it's init method
 
 """
 
+
 class Square:
 
     def __init__(self, size):
@@ -22,7 +23,7 @@ class Square:
 
         if type(size) is not int:
             raise TypeError('size must be an integer')
-        
+
         if size < 0:
             raise ValueError('size must be >= 0')
 
