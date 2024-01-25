@@ -1,8 +1,17 @@
 #!/usr/bin/python3
-class Square:
-    """Square Class
+"""Square module.
 
-    A Square Class
+This module defines a Square class representing a square with a specific size.
+
+"""
+
+
+class Square:
+    """The defination of the square
+
+    Args:
+     size (int): the size of one edge of the square.
+     position (tuple): The position of the square.
 
     """
 
@@ -58,12 +67,8 @@ class Square:
 
     @property
     def position(self):
-        """Gets the current position of the square.
+        """Gets the current position of the square."""
 
-        Returns:
-            tuple: The position of the square.
-
-        """
         return self.__position
 
     @position.setter
@@ -71,29 +76,15 @@ class Square:
         """position setter method.
 
         Sets the position of the square.
-
-        Args:
-            position (tuple): The new position of the square.
-
-        Raises:
-            TypeError: If `position` is not a tuple of 2 positive integers.
-
         """
+
         if not self.__check_position(position):
             raise TypeError('position must be a tuple of 2 positive integers')
 
         self.__position = position
 
     def __check_position(self, position):
-        """Check if position is a tuple of 2 positive integers.
-
-        Args:
-            position (tuple): The position to check.
-
-        Returns:
-            bool: True if position is valid, False otherwise.
-
-        """
+        """Check if position is a tuple of 2 positive integers"""
         return (
             self.__check_tuple(position) and
             self.__check_indexes(position) and
@@ -102,60 +93,28 @@ class Square:
         )
 
     def __check_tuple(self, position):
-        """Check if position is a tuple.
+        """Check if position is a tuple."""
 
-        Args:
-            position (tuple): The position to check.
-
-        Returns:
-            bool: True if position is a tuple, False otherwise.
-
-        """
         return type(position) is tuple
 
     def __check_indexes(self, position):
-        """Check if position has two elements.
+        """Check if position has two elements."""
 
-        Args:
-            position (tuple): The position to check.
-
-        Returns:
-            bool: True if position has two elements, False otherwise.
-
-        """
         return len(position) == 2
 
     def __check_integers(self, position):
-        """Check if elements of position are integers.
+        """Check if elements of position are integers."""
 
-        Args:
-            position (tuple): The position to check.
-
-        Returns:
-            bool: True if elements of position are integers, False otherwise.
-
-        """
         return type(position[0]) is int and type(position[1]) is int
 
     def __check_values(self, position):
-        """Check if elements of position are positive.
+        """Check if elements of position are positive."""
 
-        Args:
-            position (tuple): The position to check.
-
-        Returns:
-            bool: True if elements of position are positive, False otherwise.
-
-        """
         return position[0] >= 0 and position[1] >= 0
 
     def area(self):
-        """Returns the current square area.
+        """Returns the current square area."""
 
-        Returns:
-            int: The area of the square.
-
-        """
         return self.__size ** 2
 
     def my_print(self):
