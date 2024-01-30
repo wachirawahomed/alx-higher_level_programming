@@ -1,23 +1,23 @@
 #!/usr/bin/python3
 """
-
 A module with a class Rectangle
-
 """
-
 
 class Rectangle:
     """
     Defines a rectangle with width and height attributes.
     """
 
+    number_of_instances = 0
+    print_symbol = "#"
+
     def __init__(self, width=0, height=0):
         """
         Initializes a rectangle with specified width and height.
 
         Args:
-            width (int): The width of the rectangle.
-            height (int): The height of the rectangle.
+            width (int, optional): The width of the rectangle.
+            height (int, optional): The height of the rectangle.
 
         Raises:
             TypeError: If width or height is not an integer.
@@ -25,6 +25,7 @@ class Rectangle:
         """
         self.width = width
         self.height = height
+        Rectangle.number_of_instances += 1
 
     @property
     def width(self):
@@ -104,7 +105,27 @@ class Rectangle:
             str: A string representation of the rectangle.
         """
         result = ""
-        if self.__width != 0 and self.__height != 0:
-            for _ in range(self._height):
-                result += "#" * self._width + "\n"
-        return result
+        if self.__width == 0 or self.__height == 0:
+            return result
+
+        for _ in range(self.__height):
+            result += str(self.print_symbol) * self.__width + "\n"
+
+        return result[:-1]
+
+    def __repr__(self):
+        """
+        Return a string representation of the rectangle
+        that can be used to recreate the instance.
+
+        Returns:
+            str: A string representation of the rectangle.
+        """
+        return f"Rectangle({self.__width}, {self.__height})"
+
+    def __del__(self):
+        """
+        Print a message when an instance of Rectangle is deleted.
+        """
+        print("Bye rectangle...")
+        Rectangle.number_of_instances -= 1
