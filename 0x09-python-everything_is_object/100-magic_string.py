@@ -1,8 +1,4 @@
 #!/usr/bin/python3
-
-def magic_string(values= []):
-    if values is None:
-        values = ['BestSchool']
-    else:
-        values.append('BestSchool')
-    return ', '.join(values)
+def magic_string(value=[]):
+    value.append('BestSchool')
+    return ', '.join(value)
