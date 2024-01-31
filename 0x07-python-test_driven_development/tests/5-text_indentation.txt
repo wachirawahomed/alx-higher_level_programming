@@ -61,18 +61,18 @@ James Bond
 
 #7: A test case with an integer parameter
 
->>> text_indentation(15)
+>>> text_indentation(60)
 Traceback (most recent call last):
 TypeError: text must be a string
 
 #8: A test case with a boolean parameter
 
->>> text_indentation(True)
+>>> text_indentation(False)
 Traceback (most recent call last):
 TypeError: text must be a string
 
 #9: A test case with a data type parameter
 
->>> text_indentation(str)
+>>> text_indentation(int)
 Traceback (most recent call last):
 TypeError: text must be a string
