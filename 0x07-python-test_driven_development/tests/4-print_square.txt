@@ -1,0 +1,38 @@
+===============
+3. Print square
+===============
+
+Import module:
+==============
+>>> print_square = __import__('4-print_square').print_square
+
+# 1: A test case with size 1
+
+>>> print_square(1)
+#
+
+# 2: A test case with size 0
+
+>>> print_square(0)
+
+
+# 3: A test case with a valid integer parameter
+
+>>> print_square(5)
+#####
+#####
+#####
+#####
+#####
+
+# 4: ValueError when size is less than 0
+
+>>> print_square(-1)
+Traceback (most recent call last):
+ValueError: size must be >= 0
+
+# 5: TypeError when size is a float
+
+>>> print_square(5.5)
+Traceback (most recent call last):
+TypeError: size must be an integer

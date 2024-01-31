@@ -1,0 +1,40 @@
+==============
+2. Say my name
+==============
+
+Import module:
+==============
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+# 1: A test case with both first and last name
+
+>>> say_my_name("Jacob", "Cross")
+My name is Jacob Cross
+
+# 2: A test case with only first name
+
+>>> say_my_name("Davis")
+My name is Davis 
+
+# 3: A test case with many spaces 
+
+>>> say_my_name(" ", "Santiago")
+My name is   Santiago
+
+# 3: TypeError when first_name is not a string
+
+>>> say_my_name(23, "Bond")
+Traceback (most recent call last):
+TypeError: first_name must be a string
+
+# 4: TypeError when last_name is not a string
+
+>>> say_my_name("James", 07)
+Traceback (most recent call last):
+TypeError: last_name must be a string
+
+# 6: TypeError when both names are not strings
+
+>>> say_my_name(50, 50)
+Traceback (most recent call last):
+TypeError: first_name must be a string
