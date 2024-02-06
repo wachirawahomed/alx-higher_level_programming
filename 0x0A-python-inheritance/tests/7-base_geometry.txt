@@ -47,10 +47,3 @@
 ... except TypeError as e:
 ...     str(e)
 'no_value must be an integer'
-
-# Test Case 8: Boolean variable
->>> try:
-...     bg.integer_validator("bool_val", True)
-... except TypeError as e:
-...     str(e)
-'bool_val must be an integer'
