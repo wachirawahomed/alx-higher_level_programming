@@ -1,19 +1,21 @@
 #!/usr/bin/python3
-"""read_file module.
+"""write_file module.
 
-Module for reading a text file and printing its content to stdout.
+Contains a function that writes a text file.
 """
 
 
 def read_file(filename=""):
     """
-    Reads a text file (UTF8) and prints its content to stdout.
+    Writes a string to a text file (UTF8) and returns the
+    number of characters written.
 
     Args:
-        filename (str): The name of the text file to be read.
+        filename (str): The name of the text file.
+        text (str): The string to be written to the file.
 
     Returns:
-        None
+        int: The number of characters written to the file.
     """
-    with open(filename, 'r') as f:
-        print(f.read(), end='')
+    with open(filename, 'w') as f:
+        return f.write(text)
