@@ -4,6 +4,7 @@
 Contains a Student class and some methods.
 """
 
+
 class Student:
     """Defines a student by first_name, last_name, and age."""
 
@@ -34,4 +35,3 @@ class Student:
         """
         for key, value in json.items():
             setattr(self, key, value)
-

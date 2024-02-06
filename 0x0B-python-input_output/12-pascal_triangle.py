@@ -5,6 +5,7 @@ Contains a function that returns a list of lists of
 integers representing the Pascal’s triangle of n.
 """
 
+
 def pascal_triangle(n):
     """Generate Pascal's triangle up to the nth row."""
     if n <= 0:
