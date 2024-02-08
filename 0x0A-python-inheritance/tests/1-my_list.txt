@@ -1,4 +1,4 @@
-1. Print sorted module
+i. Print sorted module
 ======================
 
 Import module:
@@ -96,4 +96,3 @@ Test case #12
 	Traceback (most recent call last):
 	...
 	TypeError: MyList.print_sorted() takes 1 positional argument but 2 were given
-
