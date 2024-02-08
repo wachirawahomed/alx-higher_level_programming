@@ -4,9 +4,11 @@
 Contains function that checks.
 """
 
+
 def add_attribute(obj, attr_name, attr_value):
     """
-    Adds a new attribute to an object if possible, otherwise raises a TypeError.
+    Adds a new attribute to an object if possible,
+    otherwise raises a TypeError
 
     Args:
         obj: The object to which the attribute will be added.
