@@ -5,6 +5,8 @@ Contains the Base class which will be the
 “base” of all other classes in this project.
 """
 
+from os import path
+
 
 class Base:
     """Base class for managing id attribute."""
