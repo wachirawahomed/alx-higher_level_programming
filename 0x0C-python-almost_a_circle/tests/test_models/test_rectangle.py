@@ -28,7 +28,61 @@ class TestRectangle(unittest.TestCase):
         r.height = 25
         self.assertEqual(r.height, 25)
 
-    # Add more tests for x, y setters and getters, area, perimeter, etc.
+    def test_constructor_with_invalid_width(self):
+        with self.assertRaises(TypeError) as context:
+            r = Rectangle("10", 20)
+        self.assertEqual(str(context.exception), "width must be an integer")
+
+    def test_constructor_with_invalid_height(self):
+        with self.assertRaises(TypeError) as context:
+            r = Rectangle(10, "20")
+        self.assertEqual(str(context.exception), "height must be an integer")
+
+    def test_constructor_with_negative_width(self):
+        with self.assertRaises(ValueError) as context:
+            r = Rectangle(-10, 20)
+        self.assertEqual(str(context.exception), "width must be > 0")
+
+    def test_constructor_with_negative_height(self):
+        with self.assertRaises(ValueError) as context:
+            r = Rectangle(10, -20)
+        self.assertEqual(str(context.exception), "height must be > 0")
+
+    def test_width_setter_with_invalid_value(self):
+        r = Rectangle(10, 20)
+        with self.assertRaises(TypeError) as context:
+            r.width = "30"
+        self.assertEqual(str(context.exception), "width must be an integer")
+
+    def test_height_setter_with_invalid_value(self):
+        r = Rectangle(10, 20)
+        with self.assertRaises(TypeError) as context:
+            r.height = "25"
+        self.assertEqual(str(context.exception), "height must be an integer")
+
+    def test_x_setter_with_invalid_value(self):
+        r = Rectangle(10, 20)
+        with self.assertRaises(TypeError) as context:
+            r.x = {}
+        self.assertEqual(str(context.exception), "x must be an integer")
+
+    def test_y_setter_with_invalid_value(self):
+        r = Rectangle(10, 20)
+        with self.assertRaises(TypeError) as context:
+            r.y = []
+        self.assertEqual(str(context.exception), "y must be an integer")
+
+    def test_x_setter_with_negative_value(self):
+        r = Rectangle(10, 20)
+        with self.assertRaises(ValueError) as context:
+            r.x = -5
+        self.assertEqual(str(context.exception), "x must be >= 0")
+
+    def test_y_setter_with_negative_value(self):
+        r = Rectangle(10, 20)
+        with self.assertRaises(ValueError) as context:
+            r.y = -10
+        self.assertEqual(str(context.exception), "y must be >= 0")
 
     def test_inheritance_from_base(self):
         self.assertTrue(issubclass(Rectangle, Base))
