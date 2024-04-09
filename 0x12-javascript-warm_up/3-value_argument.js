@@ -7,3 +7,4 @@ if (!argument) {
 } else {
   console.log(argument);
 }
+

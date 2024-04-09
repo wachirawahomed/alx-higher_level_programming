@@ -9,3 +9,4 @@ if (argsCount === 2) {
 } else {
   console.log("Arguments found");
 }
+
