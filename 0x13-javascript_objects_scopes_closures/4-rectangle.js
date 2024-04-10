@@ -1,7 +1,7 @@
 #!/usr/bin/node
 
 class Rectangle {
-  constructor(w, h) {
+  constructor (w, h) {
     if (w <= 0 || h <= 0) {
       // If width or height is not positive, create an empty object
       return {};
@@ -12,19 +12,19 @@ class Rectangle {
     }
   }
 
-  print() {
+  print () {
     // Print the rectangle using character 'X'
     for (let i = 0; i < this.height; i++) {
       console.log('X'.repeat(this.width));
     }
   }
 
-  rotate() {
+  rotate () {
     // Exchange the width and height of the rectangle
     [this.width, this.height] = [this.height, this.width];
   }
 
-  double() {
+  double () {
     // Multiply the width and height of the rectangle by 2
     this.width *= 2;
     this.height *= 2;
