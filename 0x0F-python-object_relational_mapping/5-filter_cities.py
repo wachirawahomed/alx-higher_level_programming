@@ -38,3 +38,5 @@ if __name__ == "__main__":
     # Print cities separated by comma
     if cities:
         print(", ".join(city[0] for city in cities))
+    else:
+        print("")
