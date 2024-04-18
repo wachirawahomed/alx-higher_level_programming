@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 """
 This script lists all cities from the database hbtn_0e_4_usa.
+Arguments:
+    mysql username (str)
+    mysql password (str)
+    database name (str)
 """
 
 import MySQLdb
@@ -42,4 +46,3 @@ if __name__ == '__main__':
     # Close cursor and database connection
     cur.close()
     db.close()
-
