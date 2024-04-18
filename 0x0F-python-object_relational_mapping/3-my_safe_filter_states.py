@@ -3,6 +3,12 @@
 This script displays all values in the states table of hbtn_0e_0_usa
 where name matches the provided argument, using parameterized queries
 to prevent SQL injection.
+
+Arguments:
+    mysql username (str)
+    mysql password (str)
+    database name (str)
+    state name searched (str)
 """
 
 import MySQLdb
@@ -31,7 +37,7 @@ if __name__ == '__main__':
     cur = db.cursor()
 
     # Create SQL query with parameterized query
-    sql_query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
+    sql_query = "SELECT * FROM states WHERE name = %s ORDER BY id"
 
     # Execute SQL query with state_name as parameter
     cur.execute(sql_query, (state_name,))
@@ -40,4 +46,3 @@ if __name__ == '__main__':
     rows = cur.fetchall()
     for row in rows:
         print(row)
-
