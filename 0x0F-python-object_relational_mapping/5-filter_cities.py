@@ -1,46 +1,40 @@
 #!/usr/bin/python3
 """
-This script lists all cities of the specified state
-from the database hbtn_0e_4_usa.
+Script that lists all cities of a specific state from
+the database hbtn_0e_4_usa
+
+Arguments:
+    mysql username (str)
+    mysql password (str)
+    database name (str)
+    state name (str)
 """
 
+import sys
 import MySQLdb
-from sys import argv
 
-if __name__ == '__main__':
-    """
-    Access to the database and get the cities
-    from the database.
-    """
-    # Check if correct number of arguments are provided
-    if len(argv) != 5:
-        print("Usage: {} username password database state_name"
-              .format(argv[0]))
-        exit(1)
+if __name__ == "__main__":
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    database_name = sys.argv[3]
+    state_name = sys.argv[4]
 
-    # Get MySQL credentials, database name, and state name from
-    # command line arguments
-    username, password, database, state_name = argv[1], argv[2]
-    database, state_name = argv[3], argv[4]
+    # Establish connection to MySQL database
+    db = MySQLdb.connect(host="localhost", port=3306, user=mysql_username,
+                         passwd=mysql_password, db=database_name)
+    cursor = db.cursor()
 
-    # Connect to MySQL server running on localhost at port 3306
-    db = MySQLdb.connect(host="localhost", port=3306, user=username,
-                         passwd=password, db=database)
+    # Prepare SQL query
+    query = "SELECT cities.name \
+            FROM cities JOIN states ON cities.state_id = states.id \
+            WHERE states.name = %s ORDER BY cities.id"
 
-    # Create a cursor object to execute SQL queries
-    cur = db.cursor()
+    # Execute SQL query with state name as parameter
+    cursor.execute(query, (state_name,))
 
-    # Execute SQL query to select all cities of the specified state
-    cur.execute("""
-        SELECT GROUP_CONCAT(cities.name SEPARATOR ', ')
-        FROM cities
-        JOIN states ON cities.state_id = states.id
-        WHERE states.name = %s
-        ORDER BY cities.id ASC
-    """, (state_name,))
+    # Fetch all rows
+    cities = cursor.fetchall()
 
-    # Fetch and print the result
-    result = cur.fetchone()[0]
-    if result:
-        print(result)
-
+    # Print cities separated by comma
+    if cities:
+        print(", ".join(city[0] for city in cities))
