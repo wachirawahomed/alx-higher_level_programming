@@ -2,6 +2,11 @@
 """
 Script that deletes all State objects with a name containing the letter a
 from the database hbtn_0e_6_usa
+
+Arguments:
+    mysql username (str)
+    mysql password (str)
+    database name (str)
 """
 
 import sys
@@ -16,17 +21,16 @@ if __name__ == "__main__":
 
     username, password, database = sys.argv[1:]
 
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
-                           .format(username, password, database))
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
+                           .format(username, password, database),
+                           pool_pre_ping=True)
 
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states_to_delete = session.query(State).filter(State.name.like('%a%')).all)
+    states_to_del = session.query(State).filter(State.name.like('%a%')).all()
 
-    for state in states_to_delete:
+    for state in states_to_del:
         session.delete(state)
 
     session.commit()
-    session.close()
-

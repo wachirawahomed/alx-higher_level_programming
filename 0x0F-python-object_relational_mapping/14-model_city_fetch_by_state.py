@@ -16,11 +16,12 @@ if __name__ == "__main__":
     from the database.
     """
 
-	username, password, database = sys.argv[1:]
+    username, password, database = sys.argv[1:]
 
     # Create engine to establish connection
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.
-                           format(username, password, database))
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
+                           .format(username, password, database),
+                           pool_pre_ping=True)
 
     # Create session
     Session = sessionmaker(bind=engine)
@@ -35,4 +36,3 @@ if __name__ == "__main__":
 
     # Close session
     session.close()
-
