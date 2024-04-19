@@ -4,22 +4,22 @@ Module for State class.
 """
 
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from model_city import Base, City
+
+Base = declarative_base()
 
 
 class State(Base):
-    """Class representation of a State for SQLAlchemy.
+    """Class representing a state.
 
     Attributes:
-    __tablename__ (str): The table name of the class
-    id (int): The State id of the class
-    name (str): The State name of the class
-    cities (:obj:`City`): The Cities belongs to State
+        id (int): The unique identifier for the state.
+        name (str): The name of the state.
+        cities (relationship): Relationship to the City class.
     """
-
     __tablename__ = 'states'
-    id = Column(Integer, primary_key=True, nullable=False, unique=True)
-    name = Column(String(128), nullable=False)
-    cities = relationship("City", backref="state", cascade="all, delete")
 
+    id = Column(Integer, autoincrement=True, primary_key=True)
+    name = Column(String(128), nullable=False)
+    cities = relationship("City", cascade="all, delete", backref="state")

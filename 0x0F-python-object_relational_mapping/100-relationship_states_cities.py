@@ -1,7 +1,11 @@
 #!/usr/bin/python3
 """
-Script that creates the State “California” with the
-City “San Francisco” from the database hbtn_0e_100_usa
+Script to create the State "California" with the City "San Francisco
+
+Arguments:
+    mysql username (str)
+    mysql password (str)
+    database name (str)
 """
 
 import sys
@@ -19,22 +23,23 @@ if __name__ == "__main__":
     username, password, database = sys.argv[1:]
 
     # Create engine to establish connection
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.
-                           format(username, password, database))
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
+                           .format(username, password, database),
+                           pool_pre_ping=True)
+
+    # Create all defined tables
+    Base.metadata.create_all(engine)
 
     # Create session
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Add new state and city
-    new_state = State(name="California")
-    new_city = City(name="San Francisco", state=new_state)
-    session.add(new_state)
-    session.add(new_city)
+    # Create California state
+    cali = State(name="California")
+    session.add(cali)
 
-    # Commit changes
+    # Create San Francisco city
+    sf = City(name="San Francisco", state=cali)
+    session.add(sf)
+
     session.commit()
-
-    # Close session
-    session.close()
-
