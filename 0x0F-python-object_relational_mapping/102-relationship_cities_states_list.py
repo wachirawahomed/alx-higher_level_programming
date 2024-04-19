@@ -14,8 +14,9 @@ if __name__ == "__main__":
     username, password, database = sys.argv[1:]
 
     # Create engine to establish connection
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.
-                           format(username, password, database))
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
+                           .format(username, password, database),
+                           pool_pre_ping=True)
 
     # Create session
     Session = sessionmaker(bind=engine)
@@ -27,7 +28,3 @@ if __name__ == "__main__":
     # Print results
     for city in cities:
         print("{}: {} -> {}".format(city.id, city.name, city.state.name))
-
-    # Close session
-    session.close()
-

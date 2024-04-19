@@ -2,6 +2,11 @@
 """
 Script that lists all State objects, and corresponding City objects,
 contained in the database hbtn_0e_101_usa
+
+Arguments:
+    mysql username (str)
+    mysql password (str)
+    database name (str)
 """
 
 import sys
@@ -15,8 +20,9 @@ if __name__ == "__main__":
     username, password, database = sys.argv[1:]
 
     # Create engine to establish connection
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.
-                           format(username, password, database))
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
+                           .format(username, password, database),
+                           pool_pre_ping=True)
 
     # Create session
     Session = sessionmaker(bind=engine)
@@ -30,7 +36,3 @@ if __name__ == "__main__":
         print("{}: {}".format(state.id, state.name))
         for city in state.cities:
             print("\t{}: {}".format(city.id, city.name))
-
-    # Close session
-    session.close()
-
