@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 """
 Script that lists all State objects from the database hbtn_0e_6_usa
+
+Arguments:
+    mysql username (str)
+    mysql password (str)
+    database name (str)
 """
 
 import sys
@@ -16,16 +21,14 @@ if __name__ == "__main__":
     username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
 
     # Create engine to establish connection
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
-        username, password, database))
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
+                           .format(username, password, database),
+                           pool_pre_ping=True)
 
-    # Create session
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Query to fetch all State objects
     all_states = session.query(State).order_by(State.id).all()
 
     for state in all_states:
         print("{}: {}".format(state.id, state.name))
-

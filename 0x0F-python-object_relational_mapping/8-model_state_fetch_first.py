@@ -2,6 +2,11 @@
 """
 Script that prints the first State object from
 the database hbtn_0e_6_usa
+
+Arguments:
+    mysql username (str)
+    mysql password (str)
+    database name (str)
 """
 
 import sys
@@ -18,8 +23,9 @@ if __name__ == "__main__":
     username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
 
     # Create engine to establish connection
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
-        username, password, database))
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
+                           .format(username, password, database),
+                           pool_pre_ping=True)
 
     # Create session
     Session = sessionmaker(bind=engine)
@@ -32,4 +38,3 @@ if __name__ == "__main__":
         print("{}: {}".format(first_state.id, first_state.name))
     else:
         print("Nothing")
-

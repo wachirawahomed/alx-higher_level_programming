@@ -2,6 +2,12 @@
 """
 Script that prints the State object with the name passed as argument
 from the database hbtn_0e_6_usa
+
+Arguments:
+    mysql username (str)
+    mysql password (str)
+    database name (str)
+    state name to search (str)
 """
 
 import sys
@@ -18,8 +24,9 @@ if __name__ == "__main__":
     username, password, database, state_name = sys.argv[1:]
 
     # Create engine to establish connection
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
-        username, password, database))
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
+                           .format(username, password, database),
+                           pool_pre_ping=True)
 
     # Create session
     Session = sessionmaker(bind=engine)
@@ -33,4 +40,3 @@ if __name__ == "__main__":
         print(state.id)
     else:
         print("Not found")
-
