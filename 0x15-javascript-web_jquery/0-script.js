@@ -1,5 +1,5 @@
-// Selecting the <header> element using querySelector
+// Use document.querySelector to select the <header> element
 const header = document.querySelector('header');
 
-// Changing the text color to red (#FF0000)
+// Change the text color of the header to red (#FF0000)
 header.style.color = '#FF0000';
